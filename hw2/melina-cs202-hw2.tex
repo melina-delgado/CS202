@@ -1,0 +1,196 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage{bussproofs}
+\geometry{margin=1in}
+
+\title{CPSC 202 PSET 2}
+\author{CPSC 202 student}
+\date{9/20/17}
+
+\begin{document}
+\maketitle
+
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+\section*{A.2.1 Arithmetic}
+\begin{enumerate}
+  \item[1.] 0\textless 1
+  
+    Definition: ${\forall x \forall y : x < y \leftrightarrow \exists z \neq 0 : x + z = y }$
+  \begin{enumerate}
+    \item[a.]
+      Assuming ${0 < 1}$ is true, by definition:
+      \begin{itemize}
+        \item ${0 < 1 \leftrightarrow \exists z \neq 0 : 0 + z = 1 }$
+      \end{itemize}
+    \item[b.] Axiom 2.3 ${\forall x \forall y : x + y = y + x}$ applies:
+      \begin{itemize}
+        \item ${0 + z = z + 0}$
+      \end{itemize}
+
+      Therefore, ${0 < 1 \leftrightarrow \exists z \neq 0 : z + 0 = 1 }$
+    \item[c.] Axiom 2.2 states ${\forall x: x + 0 = x}$
+      \begin{itemize}
+        \item ${\exists z = 1 : 1 + 0 = 1}$
+        \item Therefore, ${1 = 1}$
+      \end{itemize}
+      
+      0\textless 1 holds, following from the above axioms.
+  \end{enumerate}
+
+\item[2.] ${x + z = y + z \rightarrow x = y}$.
+
+  Proof by contradiction:
+  \begin{enumerate}
+    \item[a.] Assume ${x \neq y}$.
+    \item[b.] In our model, ${\forall x : x + \infty = \infty}$ 
+      \begin{itemize}
+        \item This does not violate Axiom 2.1
+        \item Axiom 2.2 ${x = \infty : \infty + 0 = \infty}$
+        \item Axiom 2.3 ${x = \infty : \infty + y = y + \infty}$ so, ${\infty = \infty}$
+        \item Axiom 2.4 if ${z = \infty}$ then, ${x + (y + \infty) = (x + y) + \infty}$
+          Based on our model: ${x + \infty = \infty}$, then ${\infty = \infty}$
+        \item Axiom 2.5 holds because if ${x = \infty : \infty + y = 0}$ is false.
+      \end{itemize}
+    \item[c.] if ${z = \infty}$
+      \begin{itemize}
+        \item ${x + \infty = y + \infty}$
+      \end{itemize}
+    \item[d.] In our model,
+      \begin{itemize}
+        \item ${x + \infty = \infty}$
+        \item ${y + \infty = \infty}$
+        \item Therefore, ${\infty = \infty}$
+      \end{itemize}
+
+      The implication fails since ${x \neq y}$ but in our model, ${x + z = y + z}$ was true.
+  \end{enumerate}
+
+\item[3.] ${x < y \rightarrow x + z < y + z}$
+  \begin{enumerate}
+    \item[a.] ${x + z < y + z}$ 
+      \begin{itemize}
+        \item By definition: ${x + z < y + z \leftrightarrow \exists a \neq 0 : x + z + a = y + z}$
+      \end{itemize}
+    \item[b.] Axiom 2.3 states ${\forall x \forall y : x + y = y + x}$, therefore:
+      \begin{itemize}
+        \item ${z + a = a + z}$, thus ${x + a + z = y + z}$
+      \end{itemize}
+    \item[c.] By definition, ${x < y \leftrightarrow \exists b \neq 0 : x + b = y}$
+      \begin{itemize}
+        \item if ${b = a}$
+        \item then ${x + a = y}$
+        \item Using the above statement, ${x + a + z = y + z \equiv y + z = y + z}$
+      \end{itemize}
+
+      The statement holds, following from the above axioms.
+  \end{enumerate}
+\item[4.] ${a < b \wedge c < d \rightarrow a + c < b + d}$
+  \begin{enumerate}
+    \item[a.] By definition: ${\forall a \forall b : a < b \leftrightarrow \exists z \neq 0 : a + z = b}$
+    \item[b.] By definition: ${\forall c \forall d : c < d \leftrightarrow \exists y \neq 0 : c + y = d}$
+    \item[c.] By definition ${\forall a \forall b \forall c \forall d : a + c < b + d \leftrightarrow \exists x \neq 0 : a + c + x = b + d}$
+    \item[d.] If ${x = z + y}$
+      \begin{itemize}
+        \item ${a + c + z + y = b + d}$
+      \end{itemize}
+    \item[e.] Axiom 2.3
+      \begin{itemize}
+        \item ${c + z = z + c}$
+        \item As a result, ${a + z + c + y = b + d}$
+        \item Replace ${a + z}$ and ${c + y}$ 
+      \end{itemize}
+    \item[f.] ${b + d = b + d}$ proving that the statement holds, following from the above axioms.
+  \end{enumerate}
+\end{enumerate}
+
+\section*{A.2.2 Some distributive laws}
+\begin{enumerate}
+  \item[1.] For all sets ${A, B, C,}$ and ${D}$: ${A \subseteq C \wedge B \subseteq D \rightarrow A \cap B \subseteq C \cap D}$.
+    \begin{enumerate}
+      \item[a.] ${A \subseteq C = \forall x : x \in A \rightarrow x \in C}$
+      \item[b.] ${B \subseteq D = \forall x : x \in B \rightarrow x \in D}$
+      \item[c.] ${A \cap B = \{x | x \in A \wedge x \in B\}}$
+      \item[d.] ${x \in A \wedge x \in B \rightarrow x \in C \wedge x \in D}$
+      \item[e.] Therefore, ${A \cap B \subseteq C \cap D}$
+    \end{enumerate}
+  \item[2.] For all sets ${A, B, C}$ and ${D}$: ${A \subseteq C \wedge B \supseteq D \rightarrow A \setminus B \subseteq C \setminus D}$
+    \begin{enumerate}
+      \item[a.] ${A \subseteq C = \forall x : x \in A \rightarrow x \in C}$
+      \item[b.] ${D \supseteq B = B \subseteq D = \forall x : x \in B \rightarrow x \in D}$
+      \item[c.] ${A \setminus B = \{x | x \in A \wedge x \notin B\} \rightarrow x \in C \wedge x \notin D}$
+      \item[d.] ${C \setminus D \ \{x | x \in C \wedge x \notin D}$
+    \end{enumerate} 
+    
+    This proves ${A \notin B \subseteq C \notin D}$      
+\end{enumerate}
+
+\section*{A.2.3 Elements and subsets}
+\begin{enumerate}
+  \item[1.] ${A \in B \in C}$ : D. ${A}$ is not necessarily either an element or subset of ${C}$.
+    \begin{enumerate}
+      \item[a.] Not necessarily an element
+        \begin{itemize}
+          \item if ${A}$ is ${\{1\}}$
+          \item ${A \in B}$ means ${B}$ is ${\{\{1\}\}}$
+          \item ${B \in C}$ means ${C}$ is ${\{\{\{1\}\}\}}$ therefore, ${A \notin C}$
+        \end{itemize}
+      \item[b.] Not necessarily a subset
+        \begin{itemize}
+          \item Using the same definitions of ${A, B,}$ and ${C}$, ${A \subsetneq C}$
+        \end{itemize}
+    \end{enumerate}
+  \item[2.] ${A \in B \subseteq C}$ : A. ${A}$ must be an element of ${C}$ but is not necessarily a subset of ${C}$.
+    \begin{enumerate}
+      \item[a.] Not necessarily a subset
+        \begin{itemize}
+          \item if ${A = \{1\}}$, then ${A \in B}$ means ${B = \{\{1\}\}}$
+          \item ${B \subseteq C}$ means ${C = \{\{1\}\}}$ 
+        \end{itemize}
+
+        Therefore, ${A}$ is not necessarily a subset of ${C}$.
+      \item[b.] Must be an element
+        \begin{itemize}
+          \item ${B \subseteq C = \forall x: x \in B \rightarrow x \in C}$
+        \end{itemize}
+        
+        Therefore, if A is an element of B, and all elements of B are in C, then A is an element of C.
+    \end{enumerate}
+  \item[3.] ${A \subseteq B \in C}$ : D. ${A}$ is not necessarily either an element or subset of ${C}$. 
+    \begin{enumerate}
+      \item[a.] Not necessarily an element
+        \begin{itemize}
+          \item if ${A = \{1\}}$ and ${B = \{1, 2\}}$, then ${A \subseteq B}$
+          \item since ${B \in C}$, ${C = \{\{1, 2\}\}}$. ${A \notin C}$
+        \end{itemize}
+      \item[b.] Not necessarily a subset
+        \begin{itemize} 
+          \item Using the same sets for ${A, B,}$ and ${C}$ above, ${A \subsetneq C}$ because all the elements of A are not in C.
+        \end{itemize}
+    \end{enumerate}
+  \item[4.] ${A \subseteq B \subseteq C}$ : B. ${A}$ must be a subset of ${C}$ but is not necessarily an element of ${C}$. 
+    \begin{enumerate}
+      \item[a.] Must be a subset
+        \begin{itemize}
+          \item ${A \subseteq B = \forall x : x \in A \rightarrow x \in B}$
+          \item ${B \subseteq C = \forall x : x \in B \rightarrow x \in C}$
+        \end{itemize}
+
+        Therefore, ${\forall x : x \in A \rightarrow x \in C = A \subseteq C}$
+      \item[b.] Not necessarily an element
+        \begin{itemize}
+          \item if ${A = \{1\}}$ and ${A \subseteq B}$, then ${B = \{1\}}$
+          \item if ${B \subseteq C}$, then, ${C = \{1\}}$
+        \end{itemize}
+      \end{enumerate}
+
+        Therefore, A is not necessarily an element in C.
+    \end{enumerate}
+\end{document}

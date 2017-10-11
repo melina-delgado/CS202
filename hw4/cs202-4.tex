@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage{bussproofs}
+\geometry{margin=1in}
+
+\title{CPSC 202 PSET 4}
+\author{CPSC 202 student}
+\date{10/04/17 5pm}
+
+\begin{document}
+\maketitle
+
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+\section*{A.4.1 Covering a set with itself}
+\begin{enumerate}
+  \item[] Disprove: For any set ${A}$, and any surjective function ${f: A \rightarrow A, f}$ is bijective. 
+    \begin{enumerate}
+      \item[a.] If A is an infinite set, where ${\forall x \in A : x \in \mathbb{N}}$
+      \item[b.] $f$ is surjective because for all x, f(x) = f(y) where x and y are elements of the natural numbers. Every element in the codomain is covered.
+      \item[c.] $f$ is not injective because the codomain may be larger than the domain. This is because the infinite set may not have the same cardinality between the domain and codomain. 
+      \item[d.] Therefore, the surjective function is not bijective for any set $A$
+    \end{enumerate}
+\end{enumerate}
+
+\section*{A.4.2 More inverses}
+\begin{enumerate}
+  \item[] Let A be a set. Suppose that every function ${f: A \rightarrow A}$ has an inverse function ${f^{-1}}$. How many elements can ${A}$ have?
+    \begin{enumerate}
+      \item[a.] ${|A|}$ = 0. If f is the empty function, then the function is bijective.
+      \item[b.] ${|A|}$ = 1. There is exactly 1 element in the domain and codomain of the function. Therefore, there is a bijection.
+      \item[c.] ${|A|}$ = 2 or more. Suppose our function is ${f(x) = x^2}$ and ${A = {1, -1}}$. As proven by A.4.1, the function is not bijective for any set A that includes 1 and -1 with this function. Therefore, any set A larger than 2 is does not have an inverse for every function.
+      \item[d.] $A$ can have 0 or 1 elements.
+    \end{enumerate}
+\end{enumerate}
+
+\section*{A.4.3 Rational and irrational}
+\begin{enumerate}
+  \item[] Let $q$ and $r$ be rel numbers such that $q$ is rational and $r$ is irrational. Show that there exists a rational ${q'}$ such that ${q < q' < r}$
+    \begin{enumerate}
+      \item[a.] Archimedian property: for ${0 < x < y : \exists n \in \mathbb{N}, s.t.  nx > y}$ 
+      \item[b.] Subtract q from both sides: ${0 < r-q}$ and q' = q + n, where ${n < r-q \in Q}$
+      \item[c.] Case 1: ${r-q \geq 2 > 1}$
+        \begin{itemize} 
+          \item ${r-q > 1}$
+          \item ${r > 1 + q > q}$ where ${1 + q = q'}$
+        \end{itemize}
+      \item[d.] Case 2: ${0 < r - q < 2}$ where ${r \neq 0, n \neq 1}$
+        \begin{itemize}
+          \item ${n(r-q) > 2}$ where n = Q
+          \item q' = q + 2/n
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

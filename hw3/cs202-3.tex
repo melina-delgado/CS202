@@ -21,174 +21,46 @@
 
 \section*{A.3.1 A powerful problem}
 \begin{enumerate}
-  \item[1.] If ${A}$ and ${B}$ are sets, then ${A^B}$ is the set of all functions ${f: B \rightarrow A}$. 1 = ${\{\emptyset\}}$ \\ |${1^A}$| = |${A^1}| then |${A}$| = 1
-  \begin{enumerate}
-    \item[a.]
-      Assuming ${0 < 1}$ is true, by definition:
-      \begin{itemize}
-        \item ${0 < 1 \leftrightarrow \exists z \neq 0 : 0 + z = 1 }$
-      \end{itemize}
-    \item[b.] Axiom 2.3 ${\forall x \forall y : x + y = y + x}$ applies:
-      \begin{itemize}
-        \item ${0 + z = z + 0}$
-      \end{itemize}
-
-      Therefore, ${0 < 1 \leftrightarrow \exists z \neq 0 : z + 0 = 1 }$
-    \item[c.] Axiom 2.2 states ${\forall x: x + 0 = x}$
-      \begin{itemize}
-        \item ${\exists z = 1 : 1 + 0 = 1}$
-        \item Therefore, ${1 = 1}$
-      \end{itemize}
-      
-      0\textless 1 holds, following from the above axioms.
-  \end{enumerate}
-
-\item[2.] ${x + z = y + z \rightarrow x = y}$.
-
-  Proof by contradiction:
-  \begin{enumerate}
-    \item[a.] Assume ${x \neq y}$.
-    \item[b.] In our model, ${\forall x : x + \infty = \infty}$ 
-      \begin{itemize}
-        \item This does not violate Axiom 2.1
-        \item Axiom 2.2 ${x = \infty : \infty + 0 = \infty}$
-        \item Axiom 2.3 ${x = \infty : \infty + y = y + \infty}$ so, ${\infty = \infty}$
-        \item Axiom 2.4 if ${z = \infty}$ then, ${x + (y + \infty) = (x + y) + \infty}$
-          Based on our model: ${x + \infty = \infty}$, then ${\infty = \infty}$
-        \item Axiom 2.5 holds because if ${x = \infty : \infty + y = 0}$ is false.
-      \end{itemize}
-    \item[c.] if ${z = \infty}$
-      \begin{itemize}
-        \item ${x + \infty = y + \infty}$
-      \end{itemize}
-    \item[d.] In our model,
-      \begin{itemize}
-        \item ${x + \infty = \infty}$
-        \item ${y + \infty = \infty}$
-        \item Therefore, ${\infty = \infty}$
-      \end{itemize}
-
-      The implication fails since ${x \neq y}$ but in our model, ${x + z = y + z}$ was true.
-  \end{enumerate}
-
-\item[3.] ${x < y \rightarrow x + z < y + z}$
-  \begin{enumerate}
-    \item[a.] ${x + z < y + z}$ 
-      \begin{itemize}
-        \item By definition: ${x + z < y + z \leftrightarrow \exists a \neq 0 : x + z + a = y + z}$
-      \end{itemize}
-    \item[b.] Axiom 2.3 states ${\forall x \forall y : x + y = y + x}$, therefore:
-      \begin{itemize}
-        \item ${z + a = a + z}$, thus ${x + a + z = y + z}$
-      \end{itemize}
-    \item[c.] By definition, ${x < y \leftrightarrow \exists b \neq 0 : x + b = y}$
-      \begin{itemize}
-        \item if ${b = a}$
-        \item then ${x + a = y}$
-        \item Using the above statement, ${x + a + z = y + z \equiv y + z = y + z}$
-      \end{itemize}
-
-      The statement holds, following from the above axioms.
-  \end{enumerate}
-\item[4.] ${a < b \wedge c < d \rightarrow a + c < b + d}$
-  \begin{enumerate}
-    \item[a.] By definition: ${\forall a \forall b : a < b \leftrightarrow \exists z \neq 0 : a + z = b}$
-    \item[b.] By definition: ${\forall c \forall d : c < d \leftrightarrow \exists y \neq 0 : c + y = d}$
-    \item[c.] By definition ${\forall a \forall b \forall c \forall d : a + c < b + d \leftrightarrow \exists x \neq 0 : a + c + x = b + d}$
-    \item[d.] If ${x = z + y}$
-      \begin{itemize}
-        \item ${a + c + z + y = b + d}$
-      \end{itemize}
-    \item[e.] Axiom 2.3
-      \begin{itemize}
-        \item ${c + z = z + c}$
-        \item As a result, ${a + z + c + y = b + d}$
-        \item Replace ${a + z}$ and ${c + y}$ 
-      \end{itemize}
-    \item[f.] ${b + d = b + d}$ proving that the statement holds, following from the above axioms.
-  \end{enumerate}
+  \item[] If ${A}$ and ${B}$ are sets, then ${A^B}$ is the set of all functions ${f: B \rightarrow A}$. 1 = ${\{\emptyset\}}$ \\ ${|1^A|}$ = ${|A^1|}$ then ${|A|}$ = 1
+    \begin{enumerate}
+      \item[a.] for 1, ${|1|}$ is 1 because it contains exactly one set, the null set.
+      \item[b.] ${|1^A|}$ is ${|1|^{|A|}}$ and because ${|1|}$ is 1, ${|1|^{|A|}}$ is also 1.
+      \item[c.] This means that 1 = ${|A^1|}$, and we simplify ${|A|^{|1|}}$ to just ${|A|}$
+      \item[d.] 1 = ${|A|}$
+    \end{enumerate}
 \end{enumerate}
 
-\section*{A.2.2 Some distributive laws}
+\section*{A.3.2 A correspondence}
 \begin{enumerate}
-  \item[1.] For all sets ${A, B, C,}$ and ${D}$: ${A \subseteq C \wedge B \subseteq D \rightarrow A \cap B \subseteq C \cap D}$.
+  \item[]Prove or disprove: For any sets ${A,B,}$ and ${C,}$ there exists a bijective function ${f: C^{A\times B} \rightarrow (C^B)^A}$.
     \begin{enumerate}
-      \item[a.] ${A \subseteq C = \forall x : x \in A \rightarrow x \in C}$
-      \item[b.] ${B \subseteq D = \forall x : x \in B \rightarrow x \in D}$
-      \item[c.] ${A \cap B = \{x | x \in A \wedge x \in B\}}$
-      \item[d.] ${x \in A \wedge x \in B \rightarrow x \in C \wedge x \in D}$
-      \item[e.] Therefore, ${A \cap B \subseteq C \cap D}$
+      \item[a.] ${F(f) = g \leftrightarrow \forall a\in A, \forall b \in B, \forall c \in C : f(a,b) = c \rightarrow (g(a) = h \wedge h(b) = c)}$
+      \item[b.] Prove injective
+        \begin{itemize}
+          \item F(f) = g and F(f') = g
+          \item ${\forall a \forall b \forall c : f(a,b) = c = f'(a, b) \rightarrow f=f'}$
+          \item Therefore, f = f'
+        \end{itemize}
+      \item[c.] Prove surjective by contradiction
+        \begin{itemize}
+          \item ${\exists g: \forall f : F(f) \neq g}$
+          \item ${\forall f: \exists a \exists b \exists c : f(a,b) \neq c \wedge (g(a) = h \wedge h(b) = c)}$
+          \item But fs are all functions ${A \times B \rightarrow C}$: contradiction
+        \end{itemize}
     \end{enumerate}
-  \item[2.] For all sets ${A, B, C}$ and ${D}$: ${A \subseteq C \wedge B \supseteq D \rightarrow A \setminus B \subseteq C \setminus D}$
-    \begin{enumerate}
-      \item[a.] ${A \subseteq C = \forall x : x \in A \rightarrow x \in C}$
-      \item[b.] ${D \supseteq B = B \subseteq D = \forall x : x \in B \rightarrow x \in D}$
-      \item[c.] ${A \setminus B = \{x | x \in A \wedge x \notin B\} \rightarrow x \in C \wedge x \notin D}$
-      \item[d.] ${C \setminus D \ \{x | x \in C \wedge x \notin D}$
-    \end{enumerate} 
-    
-    This proves ${A \notin B \subseteq C \notin D}$      
 \end{enumerate}
 
-\section*{A.2.3 Elements and subsets}
+\section*{A.3.3 Inverses}
 \begin{enumerate}
-  \item[1.] ${A \in B \in C}$ : D. ${A}$ is not necessarily either an element or subset of ${C}$.
+  \item[]Show that ${f}$ is injective and ${g}$ is surjective.
     \begin{enumerate}
-      \item[a.] Not necessarily an element
+      \item[a.] Suppose we have elements x and y in f(x). If f(x) = f(y) then x = y, for f to be injective. Therefore, if g(f(x)) = g(f(y)), x = y
+      \item[b.] For g to be surjective, this means ${\forall x \in A :\exists y \in B}$ s.t. g(y) = x 
         \begin{itemize}
-          \item if ${A}$ is ${\{1\}}$
-          \item ${A \in B}$ means ${B}$ is ${\{\{1\}\}}$
-          \item ${B \in C}$ means ${C}$ is ${\{\{\{1\}\}\}}$ therefore, ${A \notin C}$
-        \end{itemize}
-      \item[b.] Not necessarily a subset
-        \begin{itemize}
-          \item Using the same definitions of ${A, B,}$ and ${C}$, ${A \subsetneq C}$
+          \item x = g $\circ$ f(x) = g(f(x))
+          \item choose y = f(x)
+          \item g(y) = x
         \end{itemize}
     \end{enumerate}
-  \item[2.] ${A \in B \subseteq C}$ : A. ${A}$ must be an element of ${C}$ but is not necessarily a subset of ${C}$.
-    \begin{enumerate}
-      \item[a.] Not necessarily a subset
-        \begin{itemize}
-          \item if ${A = \{1\}}$, then ${A \in B}$ means ${B = \{\{1\}\}}$
-          \item ${B \subseteq C}$ means ${C = \{\{1\}\}}$ 
-        \end{itemize}
-
-        Therefore, ${A}$ is not necessarily a subset of ${C}$.
-      \item[b.] Must be an element
-        \begin{itemize}
-          \item ${B \subseteq C = \forall x: x \in B \rightarrow x \in C}$
-        \end{itemize}
-        
-        Therefore, if A is an element of B, and all elements of B are in C, then A is an element of C.
-    \end{enumerate}
-  \item[3.] ${A \subseteq B \in C}$ : D. ${A}$ is not necessarily either an element or subset of ${C}$. 
-    \begin{enumerate}
-      \item[a.] Not necessarily an element
-        \begin{itemize}
-          \item if ${A = \{1\}}$ and ${B = \{1, 2\}}$, then ${A \subseteq B}$
-          \item since ${B \in C}$, ${C = \{\{1, 2\}\}}$. ${A \notin C}$
-        \end{itemize}
-      \item[b.] Not necessarily a subset
-        \begin{itemize} 
-          \item Using the same sets for ${A, B,}$ and ${C}$ above, ${A \subsetneq C}$ because all the elements of A are not in C.
-        \end{itemize}
-    \end{enumerate}
-  \item[4.] ${A \subseteq B \subseteq C}$ : B. ${A}$ must be a subset of ${C}$ but is not necessarily an element of ${C}$. 
-    \begin{enumerate}
-      \item[a.] Must be a subset
-        \begin{itemize}
-          \item ${A \subseteq B = \forall x : x \in A \rightarrow x \in B}$
-          \item ${B \subseteq C = \forall x : x \in B \rightarrow x \in C}$
-        \end{itemize}
-
-        Therefore, ${\forall x : x \in A \rightarrow x \in C = A \subseteq C}$
-      \item[b.] Not necessarily an element
-        \begin{itemize}
-          \item if ${A = \{1\}}$ and ${A \subseteq B}$, then ${B = \{1\}}$
-          \item if ${B \subseteq C}$, then, ${C = \{1\}}$
-        \end{itemize}
-      \end{enumerate}
-
-        Therefore, A is not necessarily an element in C.
-    \end{enumerate}
+\end{enumerate}
 \end{document}

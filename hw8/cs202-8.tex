@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage{bussproofs}
+
+\geometry{margin=1in}
+
+\title{CPSC 202 PSET 8}
+\author{CPSC 202 student}
+\date{11/8/17 5pm}
+
+\begin{document}
+\maketitle
+
+\section*{A.8.1 Minimal and maximal elements}
+\begin{enumerate}
+  \item[1.] Proof: There exists a nonempty $R\subseteq \mathcal{P}(\mathbb{N})$ with no maximal elements.  
+    \begin{itemize}
+      \item Let's say $A_{max}$ is our maximal element in our infinite set, where max is any number which designates the maximal power set. 
+      \item However, if we add 1 to max, we achieve a new maximal. Because we can continuously add one, there is no maximal.
+    \end{itemize}
+  \item[2.] Proof: There exists a nonempty $S\subseteq\mathcal{P}(\mathbb{N})$ with no minimal elements.
+    \begin{itemize}
+      \item Similar to our first proof, we can assign $A_{min}$ to be our minimal element. Then we can subtract 1 from $A_{min}$ for $A_{min-1}$. $A_{min}$ is no longer the minimal in the case. Because we can keep subtracting one, there is no minimal element.
+    \end{itemize}
+  \item[3.] Proof: There exists a nonempty $T\subseteq\mathcal{P}(\mathbb{N})$ with no minimal nor maximal elements.
+    \\ If we consider the set of even natural numbers, we can take the union of that set with the odd natural numbers. There is no maximal.
+    \\ Considering the set of even natural numbers, we take the set difference of $A_{min} = 0$, do this continuously for each next $A_{min}=2,4,..$, proving that there is no minimum as we can remove these infinitely.
+\end{enumerate}
+
+\section*{A.8.2 No trailing zeros}
+\begin{enumerate}
+  \item[] $x\sim y \iff x = 2^ky \vee y = 2^kx$ $k\in \mathbb{N}$
+    \begin{enumerate}
+      \item[1.] Show that $\sim$ is an equivalence relation:
+        \begin{enumerate}
+          \item[a.] It's reflexive: $x\sim x \iff x=2^kx\vee x=2^kx, k\in\mathbb{N}$
+            \\ If $k=0$, then, $x=2^0x = x=1*x$. Therefore, $x=x$ and $\sim$ is reflexive.
+          \item[b.] It's symmetric: $x\sim y \rightarrow y\sim x$
+            \\ $x\sim y \iff x = 2^ky \vee y= 2^kx, k\in\mathbb{N}
+            \\ y\sim x \iff y = 2^kx \vee x=2^ky, k\in\mathbb{N}$
+            Assume $x\sim y$: 
+            \begin{itemize}
+              \item Case 1: $x=2^ky$
+                \\Plug x into $y\sim x$: $y=2^k2^ky \vee 2^ky = 2^ky$
+                \\$2^ky = 2^ky$, therefore, $y\sim x$ is true.
+              \item Case 2: $y=2^kx$
+                \\Plug y into $y\sim x$: $2^kx = 2^kx\vee x = 2^k2^kx$
+                \\$2^kx = 2^kx$, therefore, $y\sim x$ is true.
+            \end{itemize}
+          \item[c.] It's transitive: $x\sim y \wedge y\sim z \rightarrow x\sim z$
+            \\ $x=2^ky \vee y=2^kx, k\in\mathbb{N}\equiv x=2^my, m\in\mathbb{Z}$
+            \\$y\sim z: y=2^{m'}z
+            \\ x = 2^m2^{m'}z=2^{m+m'}z, m+m'\in\mathbb{Z}$
+            \\ Therefore, $x\sim z$
+        \end{enumerate}
+      \item[2.] Show that there is a bijection $f : \mathbb{N}\rightarrow\mathbb{N}/\sim$
+        \[ f(x) = \begin{cases} 
+            [0]_\sim & x=0 \\
+            [2x-1]_\sim & x>0 
+          \end{cases}
+        \]
+        \begin{enumerate}
+          \item[a.] Prove injective: $\forall x,y, f(x)=f(y) \rightarrow x=y$
+            \\ Case 1: $x=0
+            \\ f(x) = [0]_\sim =f(y)=0\rightarrow x=y$
+            \\ Case 2: $x>0, y>0$
+            \\ $[2x-1]_\sim = [2y-1]_\sim
+            \\ 2x-1 = 2^k(2y-1)$
+            \\ Assume w/o loss of generality that $k\geq 0$ 
+            \\ If $k > 0$, then the equality does not hold. Therefore, k must equal 0.
+            \\ $2x-1 = 2y-1 \rightarrow x=y$
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{A.8.3 Domination}
+\begin{enumerate}
+  \item[] $f\preceq g \iff \forall x\in\mathbb{R} : f(x) \leq g(x)$
+    \begin{enumerate}
+      \item[1.] Prove that $\preceq$ is a partial order:
+        \begin{enumerate}
+          \item[a.] Reflexive:
+            \begin{itemize}
+              \item $f \preceq f : f(x) = f(x)$
+              \item $f(x) \leq f(x)$
+              \item Therefore, $f \preceq f$
+            \end{itemize}
+          \item[b.] Antisymmetric: $f \preceq g \wedge g\preceq f \rightarrow f = g$
+            \begin{itemize}
+              \item $f(x)\leq g(x) \wedge g(x)\leq f(x) \rightarrow f(x)=g(x)$
+            \end{itemize}
+          \item[c.] Transitive: $f\preceq g\wedge g\preceq h \rightarrow f\preceq h$
+            \begin{itemize}
+              \item $f(x)\leq g(x) \wedge g(x) \leq h(x) \rightarrow f(x)\leq h(x) \rightarrow f \leq h$
+            \end{itemize}
+        \end{enumerate}
+      \item[2.] Prove or disprove: $\preceq$ is a total order. Disproof:
+        \begin{itemize}
+          \item $f(x) = x, g(x) = 5$
+          \item For $x < 5, f(x) \leq g(x)$, but for $x > 5, f(x) \geq g(x)$. Therefore, $\preceq$ is not a total order, because $f(x) \leq g(x) \wedge f(x) \geq g(x)$ 
+        \end{itemize}
+      \item[3.] Prove or disprove $\preceq$ is a lattice: Each pair of elements has a greatest lower bound and a ast upper bound. Proof:
+        \begin{itemize}
+          \item $f\wedge g$ (greatest lower bound) and $f\vee g$ (least upper bound)
+          \item $f\wedge g(x) = min(f(x),g(x))$
+          \item $f\vee g(x) = max(f(x),g(x))$
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

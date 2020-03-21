@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage{bussproofs}
+
+\geometry{margin=1in}
+
+\title{CPSC 202 PSET 6}
+\author{CPSC 202 student}
+\date{10/26/17 5pm}
+
+\begin{document}
+\maketitle
+
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+
+\section*{A.6.1 An oscillating sum}
+\begin{enumerate}
+  \item[] Give a closed-form expression for $f(n)$ and prove that it is correct.
+
+    My closed form expression for f(n):
+    \[ g(n) = 
+      \begin{cases}
+        \frac{n}{2} & $if n is even$ \\
+        \frac{n+1}{2} & $if n is odd$
+      \end{cases}
+    \]
+    Proven by induction on n:
+    \begin{enumerate}
+      \item[a.] Base case: $n = 0, f(n) = g(n)$
+        \begin{itemize}
+          \item $f(0) = {(-1)^n \cdot \sum_{k=0}^{0}(-1)^0 \cdot 0} = 0$
+          \item $g(0) = \frac{0}{2} = 0$
+        \end{itemize}
+      \item[b.] Induction case: $f(n) = g(n) \rightarrow f(n+1) = g(n+1)$
+        \begin{itemize}
+          \item $f(n+1) = (-1)^{n+1} \cdot \sum_{k=0}^{n+1}(-1)^k \cdot k = (-1)^{n+1} \cdot [\sum_{k=0}^{n} (-1)^k \cdot k + (-1)^{n+1}\cdot(n+1)] = (-1)[(-1)^n\cdot \sum_{k=0}^{n}(-1)^k\cdot k + (-1)^{2n-1}\cdot(n+1)]$ \\ where 
+            $(-1)^{2n-1} = (-1)^{2n}(-1) = 1(-1) = -1$
+          \item[] Therefore, $f(n+1) = (-1)(g(n) - (n+1))$
+          \item[C1.] n is even: $f(n+1) = (-1)(\frac{n}{2} - (n+1)) = (-1)(-\frac{n+2}{2}) = \frac{n+2}{2} = \frac{n+1+1}{2} = \frac{n+1}{2} + \frac{1}{2} = \lceil\frac{n+1}{2}\rceil$
+          \item[C2.] n is odd: $f(n+1) = (-1)(\frac{n+1}{2} - (n+1)) = (-1)(-\frac{n+1}{2}) = \frac{n+1}{2} = \lceil\frac{n+1}{2}\rceil$
+        \end{itemize}
+        Therefore, $f(n)=g(n) \rightarrow f(n+1) = g(n+1)$
+    \end{enumerate}
+\end{enumerate}
+
+\section*{A.6.2 An approximate sum}
+\begin{enumerate}
+  \item[] Show that $\sum_{k=1}^{n}k^2\cdot2^k = \Theta(n^2\cdot2^n)$
+    $\Theta$ means that the function must be $O$ and $\Omega$.
+    Find $c \geq 0$ s.t. $N = 1$
+    \begin{enumerate}
+      \item[a.] $O(f(n)): \exists c,N$ s.t. $g(n) \leq c(f(n)), n \geq N$
+        \begin{itemize}
+          \item $\sum_{k=1}^{n}2^k\cdot k^2 = 2^1\cdot1^2 + 2^2\cdot2^2 + ... + 2^n\cdot n^2 \geq 2^n\cdot n^2\cdot1$
+          \item c = 1
+        \end{itemize}
+      \item[b.] $\Omega(f(n)): \exists c$ s.t. $g(n) \geq c(f(n)), n\geq N$
+        \begin{itemize}
+          \item $\sum_{k=1}^{n}k^2\cdot2^k \leq \sum_{k=1}^{n}n^2\cdot2^k = n^2 \cdot \sum_{k=1}^{n}2^k = n^2 \cdot \frac{2-2^{n+1}}{1-2} = n(2^{n+1} -2) \leq n^2\cdot2^{n+1} = n^2\cdot2^n\cdot2$
+          \item c = 2
+        \end{itemize}
+    \end{enumerate}
+
+\end{enumerate}
+
+\section*{A.6.3 A stretched function}
+\begin{enumerate}
+  \item[] Prove $f(g(n))$ is in $O(n)$
+    \begin{itemize}
+      \item $f(n) = O(n) \rightarrow \exists c1, N1$ where for $n\geq N1, f(n) \leq c1\cdot n$
+      \item $g(n) = O(n) \rightarrow \exists c2, N2$ where for $n\geq N2, g(n) \leq c2\cdot n$
+      \item $f(g(n)) = O(n) \rightarrow \exists c3, N3$ where for $n\geq N3, f(g(n))\leq c3\cdot n$
+      \item Case 1: If $g(n) > N1$ and $n > N2$
+        \begin{itemize}
+          \item Then, $(f(g(n)) \leq c1\cdot g(n) \leq c1 \cdot c2 \cdot n (c1\cdot c2 = c3)$ and $N3 \geq N2$
+        \end{itemize}
+      \item Case 2: If $|g(n) \leq N1|$
+        \begin{itemize}
+          \item $-N1 \leq |g(n)| \leq N1$
+          \item If $g(n) \leq N1$
+            \begin{itemize}
+              \item $n\geq N3\geq \frac{m}{c1\cdot c2}$ for $n < N3$
+              \item $f(g(n)) \leq m = \frac{m}{c1\cdot c2} \cdot c1 \cdot c2 \leq N3 \cdot c1 \cdot c2 \leq c1 \cdot c2 \cdot n$
+            \end{itemize}
+          \item $f(g(n))$ is bounded, $f(g(n)) < m$
+        \end{itemize}
+      \item $n \geq \frac{f(g(n)}{c3} \cdot \frac {f(g(n)}{c3} \leq n\cdot c3$ so $n \geq \frac{m}{c3}$
+    \end{itemize}
+\end{enumerate}
+
+\end{document}

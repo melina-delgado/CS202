@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage{bussproofs}
+\geometry{margin=1in}
+
+\title{CPSC 202 PSET 5}
+\author{CPSC 202 student}
+\date{10/11/17 5pm}
+
+\begin{document}
+\maketitle
+
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+\section*{A.5.1 A recursive sequence}
+\begin{enumerate}
+  \item[] Show that ${\forall n \in \mathbb{N} : a_n \leq 2^n}$
+
+    Proof by induction on n.
+    \begin{enumerate}
+      \item[a.] Base cases: ${n = 0}$, ${n = 1}$, ${n = 2}$
+       \begin{itemize}
+         \item if ${n=0, a_0 \leq 2^0}$
+         \item ${a_0 = 1}$ and ${2^0 = 1}$, therefore ${1 \leq 1}$
+         \item if ${n=1, a_1 \leq 2^1}$
+         \item ${a_1 = 2}$ and ${2^1 = 1}$, therefore ${2 \leq 2}$
+         \item if ${n=2, a_1 \leq 2^2}$
+         \item ${a_2 = 3}$ and ${2^2 = 4}$, therefore ${3 \leq 4}$
+       \end{itemize}
+     \item[b.] Induction step: prove ${a_n \leq 2^n \rightarrow a_{n+1} \leq 2^{n+1}}$ for ${n > 2}$
+       \begin{itemize}
+         \item for ${n > 2, a_n = a_{n-3} + a_{n-2} + a_{n-1}}$
+         \item if ${n > 2}$, then ${n + 1 > 2}$, and ${a_{n+1} = a_{n+1-3} + a_{n+1-2} + a_{n+1-1}}$. 
+           \begin{itemize}
+             \item Simplified: ${a_{n+1} = a_{n-2} + a_{n-1} + a_n}$. 
+             \item Substitute using our definition of ${a_n}$: ${a_{n+1} = a_{n-2} + a_{n-1} + a_{n-3} + a_{n-2} + a_{n-1}}$
+             \item Simplify after substitution: ${a_{n+1} = a_{n-3} + 2*a_{n-2} + 2*a_{n-1}}$
+           \end{itemize}
+         \item Using our definition of ${a_{n+1}}$. ${a_{n+1} \leq 2^{n+1}}$ becomes ${a_{n-3} + 2*a_{n-2} + 2*a_{n-1} \leq 2^n * 2}$
+       \item Divide both sides of the inequality by 2: ${a_{n-3} + a_{n-2} + a_{n-1} \leq 2^n}$
+       \item The left hand side is equal to ${a_n}$, so ${a_n \leq 2^n}$, which is true, therefore, ${a_{n+1} \leq 2^{n+1}}$
+     \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{A.5.2 Comparing products}
+\begin{enumerate}
+  \item[1.] Proof that ${\prod_{i=1}^{n} a_i \leq \prod_{i=1}^{n} b_i}$ by induction on n.
+    \begin{enumerate}
+      \item[a.] Base case: n = 0
+        \begin{itemize}
+          \item if n = 0, ${\prod_{i=1}^{0} a_i = 1}$ and ${\prod_{i=1}^{0} b_i = 1}$
+          \item ${1 \leq 1}$
+        \end{itemize}
+      \item[b.] Induction step: ${\prod_{i=1}^{n-1} a_i \leq \prod_{i=1}^{n-1} b_i \rightarrow \prod_{i=1}^{n} a_i \leq \prod_{i=1}^{n} b_i}$. We assume that n-1 is true to prove the statement holds for n.
+        \begin{itemize}
+          \item Take out n-1 from top: ${a_n\prod_{i=1}^{n-1} a_i \leq b_n\prod_{i=1}^{n-1} b_i}$
+          \item We know ${0 \leq a_n \leq b_n}$ and ${0 \leq \prod_{i=1}^{n-1} a_i \leq \prod_{i=1}^{n-1} b_i}$ 
+            \begin{itemize} 
+              \item Let's reduce the first inequality to ${0 \leq x \leq y}$ and the second one to ${0 \leq f \leq g}$, where x, y, f, and g are just substitutions for their respective expressions with product of a sequence.
+              \item Because all numbers are positive, we can multiply f to all sides of the first inequality to achieve: ${0 \leq xf \leq yf}$ and y to both sides of the second inequality to achieve ${0 \leq yf \leq yg}$.
+              \item We can conclude that ${0 \leq xf \leq yf \leq yg}$ and that finally, ${0 \leq xf \leq yg}$
+            \end{itemize}
+          \item Therefore, ${a_n\prod_{i=1}^{n-1} a_i \leq b_n\prod_{i=1}^{n-1} b_i}$ is true.
+        \end{itemize}
+    \end{enumerate}
+                
+  \item[2.] Show ${\forall k \in \mathbb{N} : \exists n_k : \forall n \in \mathbb{N} : n \geq n_k : k^n \leq n!}$. Proof by induction on n:
+    \begin{enumerate}
+      \item[a.] Base case: ${n = n_k = 2k^2}$
+        \begin{itemize}
+          \item ${k^{2k^2} \leq (2k^2)!}$
+          \item ${(2k^2)! = \prod_{i=1}^{2k^2} i = (\prod_{i=1}^{k^2-1} i)(\prod_{i=k^2}^{2k^2} i) \geq \prod_{i=k^2}^{2k^2} i \geq \prod_{i=k^2}^{2k^2} k^2}$ since ${i \geq k^2}$ and we proved it in 5.2.1.
+          \item Simplifying: ${\prod_{i=k^2}^{2k^2} k^2 = (k^2)^{2k^2 - k^2 + 1} = (k^2)^{k^2+1} = k^{2k^2 + 2} = k^{2k^2} k^2 \geq k^{2k^2}}$
+          \item Therefore, ${(2k^2)! \geq k^{2k^2}}$
+        \end{itemize}
+      \item[b.] Induction step: ${n! \geq k^n \rightarrow (n+1)! \geq k^{n+1}}$
+        \begin{itemize}
+          \item ${(n+1)! = (n+1)n!}$ and ${k^{n+1} = k^n k}$, so ${(n+1)n! \geq k^n k}$
+          \item We know ${n! \geq k^n}$ and need to prove ${n+1 \geq k}$
+            \begin{itemize}
+              \item Since ${n \geq 2k^2}$, then ${n+1 \geq 2k^2 + 1}$
+              \item ${n+1 \geq 2k^2 + 1 \geq 2k^2 \geq k}$
+              \item Therefore, ${n+1 \geq k}$
+            \end{itemize}
+          \item Therefore, ${(n+1)! \geq k^{n+1}}$
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{A.5.3 Rubble removal}
+\begin{enumerate}
+  \item[] The minimum and maximum number of days are the same. Proof by induction:
+    \begin{enumerate}
+      \item[a.] The number of days it takes to get rid of all the rocks = ${d = \sum_{i=1}^{n} (2n_i - 1)}$
+      \item[b.] Base case: d = 1
+        \begin{itemize}
+          \item ${\sum_{i=1}^{1} (2n_i - 1) = 2n_i - 1 = 2(1) - 1 = 1}$
+        \end{itemize}
+      \item[c.] Induction step, where d+1 represents the day before: ${d\rightarrow d+1}$
+        \begin{itemize}
+          \item Case 1: Throw away a rock
+            \begin{itemize}
+              \item ${d+1 = n_1, n_2, ..., n_k}$ where each element represents rock piles and ${n_k}$ is the pile with one rock in it (which we throw away), where ${d+1 = \sum_{i=1}^{k} (2n_i - 1)}$
+              \item ${d = n_1, n_2, ..., n_{k-1}}$, where ${d = \sum_{i=1}^{k-1} (2n_i -1)}$
+              \item Take out k for d+1: ${d+1 = (\sum_{i=1}^{k-1} (2n_i -1) + 2_{n_k} - 1)}$ \\ ${= d + 2_{n_k} -1 = d + 2 - 1 = d + 1}$
+              \item Therefore, for this case, the induction hypothesis holds.
+            \end{itemize}
+          \item Case 2: Split the pile
+            \begin{itemize}
+              \item ${d+1 = n'_1, n'_2, ..., n'_{k-1}}$
+              \item For the next day, ${n'_{k-1}}$ is split into two piles, ${n_{k-1}}$ and ${n_k}$, \\ where ${d = n'_1, n'_2, ..., n_{k-1}, n_k}$ and ${n'_{k-1} = n_{k-1} n_k}$
+              \item Assuming d is true : ${d = \sum_{i=1}^{k-2} (2n'_i -1) + \sum_{i=k-1}^{k} (2n_i -1)}$, we need to prove ${d+1 = \sum_{i=1}^{k-1} (2n'_i - 1)}$
+                \begin{itemize}
+                  \item ${\sum_{i=1}^{k-1} (2n'_i -1) = \sum_{i=1}^{k-2} (2n'_i -1) + 2n'_{k-1} -1}$
+                  \item ${2n'_{k-1} -1 = 2(n_{k-1} + n_k) - 1 = 2n_{k-1} - 1+ 2n_k - 1 + 1}$, which is the expanded version of the second sum that defines d: ${\sum_{i=k-1}^k (2n_i -1)}$
+                  \item So, ${\sum_{i=1}^{k-2} (2n'_i -1) + 2n'_{k-1} -1 = \sum_{i=1}^{k-2} (2n'_i - 1) + \sum_{i=k-1}^{k} (2n_i -1) + 1}$ which is equal to d + 1.
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+        Therefore, because in our base case and both cases, we achieved the same number of days, there minimum and maximum number of days to get rid of all the rocks is the same number $d$ for a given number of rocks whether you achieve the base case, or implement case 1 or 2 in the induction step first.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

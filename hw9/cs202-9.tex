@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage{bussproofs}
+
+\geometry{margin=1in}
+
+\title{CPSC 202 PSET 9}
+\author{CPSC 202 student}
+\date{11/15/17 5pm}
+
+\begin{document}
+\maketitle
+
+\section*{A.9.1: Quadrangle Closure}
+\begin{enumerate}
+  \item[1.] Show that every graph G has a unique quadrangle closure.
+    \begin{enumerate}
+      \item[a.] Define n s.t. there are n paths with 4 vertices:
+        \\ $a_{00}a_{01}a_{02}a_{03}\rightarrow$ add $a_{03}a_{00}
+        \\ a_{10}a_{11}a_{12}a_{13}\rightarrow$ add $a_{13}a_{10}
+        \\ ...
+        \\ a_{n0}a_{n1}a_{n2}a_{n3}\rightarrow$ add $a_{n3}a_{n0}$
+      \item[b.] Let's define H: $H = G\cup {a_{01},a_{02}}\cup{a_{11},a_{12}}\cup ... \cup{a_{n0},a_{n3}}$
+      \item[c.] Proof of uniqueness:
+        \begin{itemize}
+          \item $\exists H': \forall i\forall H' : {a_{io}a_{i3}}\in H'$, therefore, H is either a supergraph or equal to H'.
+            \\ Proof by contradiction:
+            \\ $G\subseteq H'$ s.t. H' is a supergraph of G, then H' would have to be the closer of G and $H \neq H'$, so $H\neq H' \cap H\nsubseteq H'$
+            \\ For this to be true, then $\exists a_{i0}a_{i3} \in H$ s.t. ${a_{i0}a_{i3}} \neq H'$
+            \\ However, then $a_{i0}a_{i1}a_{i2}a_{i3}$ isn't closed in H' is not closure. Therefore H has to be unique.
+        \end{itemize}
+    \end{enumerate}
+  \item[2.] Show that the quadrangle closure of a bipartite graph is bipartite.
+    \\ $a_0\in S, a_1\in T, a_2\in S, a_3\in T.$ The edges will always run from $S\rightarrow T$ or $T\rightarrow S$, therefore, the position of the first vertex doesn't matter. 
+\end{enumerate}
+
+\section*{A.9.2 Cycles}
+\begin{enumerate}
+  \item[] Show that G is a cycle.
+    \begin{enumerate}
+      \item[a.] Show G has the cycle C
+        \\ $C = V_0V_1V_2...V_nV_0$, since G was defined as any two vertices with simple paths with no edges in common.
+        \\ If C weren't contained in G then there wouldn't be two paths between $V_0$ and $V_1$
+      \item[b.]G doesn't have any vertices or edges in C. Proof G=C by contradiction:
+        \\ If $\exists w_0$ s.t. $w_0\in G$ and $w_0 \notin C$, then we would have 2 paths that go from any $V_i$ in $C$ to $w_0$ not in C, but then those paths would share an edge. $w_0$ cannot exist and C=G.
+    \end{enumerate}
+\end{enumerate}
+
+\section*{A.9.3 Deleting a Graph}
+\begin{enumerate}
+  \item[] Show that you can reduce a finite graph $G_1$ to the empty graph with no vertices by this process $\iff G_0$ is acrylic.
+    \\ Prove every vertex of the cycle has degree of at least 2.
+    \begin{enumerate}
+      \item[a.] If acrylic, it can be deleted: $\forall v \in C : d(v)\geq2$
+      \item[b.] If there are edge points out of the cycle they can be deleted:
+        \\ Proof by induction on $|v|$:
+        \\
+        \\ Base case: $|v|=1$ 
+        \\ It has a degree of 0 so it can be deleted. For an acrylic graph $|v|=n-1$, there exists one vertex of degree 1.
+        \\
+        \\ Induction step: $|v|=1 \rightarrow |v|=n$
+        \\ $|E|=|v|-1$ for an acrylic graph and $2|E|= \sum_{v\in V} d(v)$
+        \\ If $\forall d(v) \geq 2$, then $2|E| = \sum_{v\in V} d(v) \geq \sum_{v\in v} 2$, so 
+        \\ $2|E|\geq2|v|$, and $|E|\geq|v|$.
+        \\ Therefore, $\exists$ at least one vertex of degree 1.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
